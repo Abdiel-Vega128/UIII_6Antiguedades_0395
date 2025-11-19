@@ -1,0 +1,51 @@
+{# app_Antiguedades/templates/detalleventa/actualizar_detalleventa.html #}
+{% extends "base.html" %}
+{% block title %}Actualizar Detalle de Venta{% endblock %}
+{% block content %}
+<h2 class="mb-4">Actualizar Detalle de Venta</h2>
+<div class="card shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+        <form method="post" action="{% url 'actualizar_detalleventa' detalleventa.id %}">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="id_venta" class="form-label">Venta:</label>
+                    <select class="form-select" id="id_venta" name="venta" required>
+                        {% for venta in ventas %}
+                            <option value="{{ venta.id }}" {% if venta.id == detalleventa.venta.id %}selected{% endif %}>Venta {{ venta.id }} - {{ venta.fecha_venta|date:"d/m/Y" }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_pieza_antiguedad" class="form-label">Pieza de Antigüedad:</label>
+                    <select class="form-select" id="id_pieza_antiguedad" name="pieza_antiguedad" required>
+                        {% for pieza in piezas %}
+                            <option value="{{ pieza.id }}" {% if pieza.id == detalleventa.pieza_antiguedad.id %}selected{% endif %}>{{ pieza.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_cantidad" class="form-label">Cantidad:</label>
+                    <input type="number" min="1" class="form-control" id="id_cantidad" name="cantidad" value="{{ detalleventa.cantidad }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_precio_unitario" class="form-label">Precio Unitario:</label>
+                    <input type="number" step="0.01" class="form-control" id="id_precio_unitario" name="precio_unitario" value="{{ detalleventa.precio_unitario }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_subtotal" class="form-label">Subtotal:</label>
+                    <input type="number" step="0.01" class="form-control" id="id_subtotal" name="subtotal" value="{{ detalleventa.subtotal }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_total" class="form-label">Total:</label>
+                    <input type="number" step="0.01" class="form-control" id="id_total" name="total" value="{{ detalleventa.total }}" required>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="{% url 'ver_detalleventas' %}" class="btn btn-secondary me-2">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Actualizar Detalle de Venta</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

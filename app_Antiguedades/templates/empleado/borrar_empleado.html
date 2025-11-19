@@ -1,0 +1,19 @@
+{# app_Antiguedades/templates/empleado/borrar_empleado.html #}
+{% extends "base.html" %}
+{% block title %}Borrar Empleado{% endblock %}
+{% block content %}
+<h2 class="mb-4">Borrar Empleado</h2>
+<div class="card shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+        <p>¿Estás seguro de que deseas borrar al empleado <strong>{{ empleado.nombre }} {{ empleado.apellido }}</strong>?</p>
+        <p class="text-muted">Esta acción no se puede deshacer.</p>
+        <form method="post" action="{% url 'borrar_empleado' empleado.id %}">
+            {% csrf_token %}
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'ver_empleados' %}" class="btn btn-secondary me-2">Cancelar</a>
+                <button type="submit" class="btn btn-danger">Borrar Empleado</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{# app_Antiguedades/templates/pieza/agregar_pieza.html #}
+{% extends "base.html" %}
+{% block title %}Agregar Pieza de Antigüedad{% endblock %}
+{% block content %}
+<h2 class="mb-4">Agregar Nueva Pieza de Antigüedad</h2>
+<div class="card shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+        <form method="post" action="{% url 'agregar_pieza' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="id_nombre" class="form-label">Nombre de la pieza:</label>
+                    <input type="text" class="form-control" id="id_nombre" name="nombre" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_proveedor" class="form-label">Proveedor:</label>
+                    <select class="form-select" id="id_proveedor" name="proveedor" required>
+                        <option value="" selected disabled>Seleccione un proveedor</option>
+                        {% for proveedor in proveedores %}
+                            <option value="{{ proveedor.id }}">{{ proveedor.nombre_empresa }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_comprador" class="form-label">Comprador (Opcional):</label>
+                    <select class="form-select" id="id_comprador" name="comprador">
+                        <option value="" selected>No vendido</option>
+                        {% for cliente in clientes %}
+                            <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <label for="id_descripcion" class="form-label">Descripción detallada:</label>
+                    <textarea class="form-control" id="id_descripcion" name="descripcion" rows="3" required></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_precio" class="form-label">Precio de venta ($):</label>
+                    <input type="number" step="0.01" class="form-control" id="id_precio" name="precio" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_año_fabricacion" class="form-label">Año de fabricación:</label>
+                    <input type="number" class="form-control" id="id_año_fabricacion" name="año_fabricacion" min="1000" max="1950" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="id_estado_conservacion" class="form-label">Estado de conservación:</label>
+                    <select class="form-select" id="id_estado_conservacion" name="estado_conservacion" required>
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="E">Excelente</option>
+                        <option value="B">Buena</option>
+                        <option value="R">Regular</option>
+                        <option value="M">Mala</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label for="id_imagen" class="form-label">Imagen de la Pieza:</label>
+                    <input type="file" class="form-control" id="id_imagen" name="imagen" accept="image/*">
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="{% url 'ver_piezas' %}" class="btn btn-secondary me-2">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar Pieza</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

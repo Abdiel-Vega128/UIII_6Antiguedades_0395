@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand text-dark" href="{% url 'inicio_antiguedades' %}">
+            <i class="fas fa-hammer me-2"></i> 
+            Sistema de Administración Tienda de Antigüedades
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active text-dark" aria-current="page" href="{% url 'inicio_antiguedades' %}">
+                        <i class="fas fa-home me-1"></i> Inicio
+                    </a>
+                </li>
+                
+                {# Proveedores (PENDIENTE) #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-truck me-1"></i> Proveedores 
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_proveedor' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_proveedores' %}">Ver</a></li>
+                    </ul>
+                </li>
+                
+                {# Clientes (ACTUALIZADO) 👥 #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-users me-1"></i> Clientes
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_cliente' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_clientes' %}">Ver</a></li>
+                    </ul>
+                </li>
+
+                {# Piezas de Antigüedad #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-gem me-1"></i> Piezas de Antigüedad
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_pieza' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_piezas' %}">Ver</a></li>
+                    </ul>
+                </li>
+
+                {# Empleados #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-tie me-1"></i> Empleados
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_empleado' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_empleados' %}">Ver</a></li>
+                    </ul>
+                </li>
+
+                {# Ventas #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-shopping-cart me-1"></i> Ventas
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_venta' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_ventas' %}">Ver</a></li>
+                    </ul>
+                </li>
+
+                {# Detalles de Venta #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-list me-1"></i> Detalles de Venta
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_detalleventa' %}">Agregar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_detalleventas' %}">Ver</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

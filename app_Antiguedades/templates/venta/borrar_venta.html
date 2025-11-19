@@ -1,0 +1,19 @@
+{# app_Antiguedades/templates/venta/borrar_venta.html #}
+{% extends "base.html" %}
+{% block title %}Borrar Venta{% endblock %}
+{% block content %}
+<h2 class="mb-4">Borrar Venta</h2>
+<div class="card shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+        <p>¿Estás seguro de que deseas borrar la venta <strong>{{ venta.id }}</strong> del {{ venta.fecha_venta|date:"d/m/Y H:i" }}?</p>
+        <p class="text-muted">Esta acción no se puede deshacer y eliminará todos los detalles asociados.</p>
+        <form method="post" action="{% url 'borrar_venta' venta.id %}">
+            {% csrf_token %}
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'ver_ventas' %}" class="btn btn-secondary me-2">Cancelar</a>
+                <button type="submit" class="btn btn-danger">Borrar Venta</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

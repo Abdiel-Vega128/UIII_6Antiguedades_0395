@@ -1,0 +1,46 @@
+{# app_Antiguedades/templates/proveedor/ver_proveedores.html #}
+{% extends "base.html" %}
+{% block title %}Ver Proveedores{% endblock %}
+{% block content %}
+<h2 class="mb-4">Lista de Proveedores</h2>
+<div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'agregar_proveedor' %}" class="btn btn-success"><i class="fas fa-plus me-1"></i> Agregar Proveedor</a>
+</div>
+{% if proveedores %}
+<div class="table-responsive">
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Empresa</th>
+                <th>Contacto</th>
+                <th>Email</th>
+                <th>Especialidad</th>
+                <th>Años Exp.</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in proveedores %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nombre_empresa }}</td>
+                <td>{{ p.contacto }}</td>
+                <td>{{ p.email }}</td>
+                <td>{{ p.especialidad }}</td>
+                <td>{{ p.años_experiencia }}</td>
+                <td class="text-nowrap">
+                    <a href="{% url 'actualizar_proveedor' p.id %}" class="btn btn-sm btn-info" title="Ver/Editar"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'borrar_proveedor' p.id %}" class="btn btn-sm btn-danger" title="Borrar"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-warning" role="alert">
+    No hay proveedores registrados.
+</div>
+{% endif %}
+{% endblock %}

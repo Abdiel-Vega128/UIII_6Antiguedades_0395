@@ -1,0 +1,30 @@
+{# app_Antiguedades/templates/proveedor/borrar_proveedor.html #}
+{% extends "base.html" %}
+{% block title %}Borrar Proveedor{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger shadow-lg">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i> Confirmar Eliminación</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text fs-5">
+                    ¿Está **seguro** de que desea eliminar el proveedor:
+                    <br>
+                    <strong>{{ proveedor.nombre_empresa }}</strong> (Contacto: {{ proveedor.contacto }})?
+                </p>
+                <p class="text-muted">Esta acción es irreversible.</p>
+                
+                <form method="post" action="{% url 'borrar_proveedor' proveedor.id %}">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="{% url 'ver_proveedores' %}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt me-1"></i> Confirmar Eliminación</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

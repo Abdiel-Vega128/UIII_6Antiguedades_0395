@@ -1,0 +1,54 @@
+{# app_Antiguedades/templates/venta/agregar_venta.html #}
+{% extends "base.html" %}
+{% block title %}Agregar Venta{% endblock %}
+{% block content %}
+<h2 class="mb-4">Agregar Nueva Venta</h2>
+<div class="card shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+        <form method="post" action="{% url 'agregar_venta' %}">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="id_fecha_venta" class="form-label">Fecha de Venta:</label>
+                    <input type="datetime-local" class="form-control" id="id_fecha_venta" name="fecha_venta" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_total" class="form-label">Total:</label>
+                    <input type="number" step="0.01" class="form-control" id="id_total" name="total" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_metodo_pago" class="form-label">Método de Pago:</label>
+                    <select class="form-select" id="id_metodo_pago" name="metodo_pago" required>
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta</option>
+                        <option value="transferencia">Transferencia</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_empleado" class="form-label">Empleado:</label>
+                    <select class="form-select" id="id_empleado" name="empleado" required>
+                        <option value="" selected disabled>Seleccionar</option>
+                        {% for empleado in empleados %}
+                            <option value="{{ empleado.id }}">{{ empleado.nombre }} {{ empleado.apellido }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_cliente" class="form-label">Cliente:</label>
+                    <select class="form-select" id="id_cliente" name="cliente" required>
+                        <option value="" selected disabled>Seleccionar</option>
+                        {% for cliente in clientes %}
+                            <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="{% url 'ver_ventas' %}" class="btn btn-secondary me-2">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar Venta</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

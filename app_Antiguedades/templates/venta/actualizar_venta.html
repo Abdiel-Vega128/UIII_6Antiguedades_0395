@@ -1,0 +1,51 @@
+{# app_Antiguedades/templates/venta/actualizar_venta.html #}
+{% extends "base.html" %}
+{% block title %}Actualizar Venta{% endblock %}
+{% block content %}
+<h2 class="mb-4">Actualizar Venta</h2>
+<div class="card shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+        <form method="post" action="{% url 'actualizar_venta' venta.id %}">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="id_fecha_venta" class="form-label">Fecha de Venta:</label>
+                    <input type="datetime-local" class="form-control" id="id_fecha_venta" name="fecha_venta" value="{{ venta.fecha_venta|date:'Y-m-d\TH:i' }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_total" class="form-label">Total:</label>
+                    <input type="number" step="0.01" class="form-control" id="id_total" name="total" value="{{ venta.total }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_metodo_pago" class="form-label">Método de Pago:</label>
+                    <select class="form-select" id="id_metodo_pago" name="metodo_pago" required>
+                        <option value="efectivo" {% if venta.metodo_pago == 'efectivo' %}selected{% endif %}>Efectivo</option>
+                        <option value="tarjeta" {% if venta.metodo_pago == 'tarjeta' %}selected{% endif %}>Tarjeta</option>
+                        <option value="transferencia" {% if venta.metodo_pago == 'transferencia' %}selected{% endif %}>Transferencia</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_empleado" class="form-label">Empleado:</label>
+                    <select class="form-select" id="id_empleado" name="empleado" required>
+                        {% for empleado in empleados %}
+                            <option value="{{ empleado.id }}" {% if empleado.id == venta.empleado.id %}selected{% endif %}>{{ empleado.nombre }} {{ empleado.apellido }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_cliente" class="form-label">Cliente:</label>
+                    <select class="form-select" id="id_cliente" name="cliente" required>
+                        {% for cliente in clientes %}
+                            <option value="{{ cliente.id }}" {% if cliente.id == venta.cliente.id %}selected{% endif %}>{{ cliente.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="{% url 'ver_ventas' %}" class="btn btn-secondary me-2">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Actualizar Venta</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

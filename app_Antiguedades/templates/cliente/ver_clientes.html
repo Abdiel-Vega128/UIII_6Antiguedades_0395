@@ -1,0 +1,64 @@
+{# app_Antiguedades/templates/cliente/ver_clientes.html #}
+{% extends "base.html" %}
+{% block title %}Ver Clientes{% endblock %}
+{% block content %}
+<h2 class="mb-4">Lista de Clientes</h2>
+<div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'agregar_cliente' %}" class="btn btn-info"><i class="fas fa-plus me-1"></i> Agregar Cliente</a>
+</div>
+{% if clientes %}
+<div class="table-responsive">
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Fecha Registro</th>
+                <th>Estado Civil</th>
+                <th>Coleccionista</th>
+                <th>Piezas Compradas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in clientes %}
+            <tr>
+                <td>{{ c.nombre }}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.telefono|default:"N/A" }}</td>
+                <td>{{ c.direccion|truncatechars:50 }}</td>
+                <td>{{ c.fecha_registro|date:"d/m/Y" }}</td>
+                <td>{{ c.get_estado_civil_display }}</td>
+                <td>
+                    {% if c.es_coleccionista %}
+                        <span class="badge bg-success"><i class="fas fa-check"></i> Sí</span>
+                    {% else %}
+                        <span class="badge bg-secondary"><i class="fas fa-times"></i> No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if c.piezas_compradas.all %}
+                        {% for pieza in c.piezas_compradas.all %}
+                            {{ pieza.nombre }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        Ninguna
+                    {% endif %}
+                </td>
+                <td class="text-nowrap">
+                    <a href="{% url 'actualizar_cliente' c.id %}" class="btn btn-sm btn-info" title="Ver/Editar"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'borrar_cliente' c.id %}" class="btn btn-sm btn-danger" title="Borrar"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-warning" role="alert">
+    No hay clientes registrados.
+</div>
+{% endif %}
+{% endblock %}

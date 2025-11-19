@@ -1,0 +1,100 @@
+{# app_Antiguedades/templates/inicio.html #}
+{% extends "base.html" %}
+
+{% block title %}Inicio - Tienda de Antigüedades{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4 mb-4 text-dark">Bienvenido al Sistema de Administración de Antigüedades</h1>
+    <p class="lead text-secondary">Este sistema permite gestionar eficientemente los proveedores, clientes y las valiosas piezas de nuestra colección.</p>
+    
+    <div class="row mt-4">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-0">
+                    
+                </div>
+            </div>
+            <p class="mt-3 text-muted">Explora la historia y administra tu inventario con facilidad.</p>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><i class="fas fa-truck fa-2x mb-2"></i></h5>
+                    <p class="card-text">Gestión de Proveedores.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'agregar_proveedor' %}" class="btn btn-primary">Agregar Proveedor</a>
+                        <a href="{% url 'ver_proveedores' %}" class="btn btn-outline-primary">Ver Proveedores</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success"><i class="fas fa-gem fa-2x mb-2"></i></h5>
+                    <p class="card-text">Inventario de Piezas de Antigüedad.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'agregar_pieza' %}" class="btn btn-success">Agregar Pieza</a>
+                        <a href="{% url 'ver_piezas' %}" class="btn btn-outline-success">Ver Piezas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-info">
+                <div class="card-body">
+                    <h5 class="card-title text-info"><i class="fas fa-users fa-2x mb-2"></i></h5>
+                    <p class="card-text">Administración de Clientes.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'agregar_cliente' %}" class="btn btn-info">Agregar Cliente</a>
+                        <a href="{% url 'ver_clientes' %}" class="btn btn-outline-info">Ver Clientes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-warning">
+                <div class="card-body">
+                    <h5 class="card-title text-warning"><i class="fas fa-user-tie fa-2x mb-2"></i></h5>
+                    <p class="card-text">Gestión de Empleados.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'agregar_empleado' %}" class="btn btn-warning">Agregar Empleado</a>
+                        <a href="{% url 'ver_empleados' %}" class="btn btn-outline-warning">Ver Empleados</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-danger"><i class="fas fa-shopping-cart fa-2x mb-2"></i></h5>
+                    <p class="card-text">Registro de Ventas.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'agregar_venta' %}" class="btn btn-danger">Agregar Venta</a>
+                        <a href="{% url 'ver_ventas' %}" class="btn btn-outline-danger">Ver Ventas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-secondary">
+                <div class="card-body">
+                    <h5 class="card-title text-secondary"><i class="fas fa-list fa-2x mb-2"></i></h5>
+                    <p class="card-text">Detalles de Ventas.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'agregar_detalleventa' %}" class="btn btn-secondary">Agregar Detalle</a>
+                        <a href="{% url 'ver_detalleventas' %}" class="btn btn-outline-secondary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
